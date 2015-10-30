@@ -1,28 +1,71 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Oct 22 20:58:19 2015
+Copyright (C) 2015 Sai Guruprasad Jakkala, G V Balakrishna
 
-@author: Sai Guruprasad & G V Balakrishna
+This program is free software: you can redistribute it 
+and/or modify it under the terms of the GNU General 
+Public License as published by the Free Software Foundation,
+either version 3 of the License, or (at your option) any 
+later version. This program is distributed in the hope that 
+it will be useful, but WITHOUT ANY WARRANTY; without even the 
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License 
+along with this program. If not, see http://www.gnu.org/licenses/.
 """
 import cmath as cm
 import numpy.linalg as lm
 import numpy as np
 import sympy as sp
 import sys
+import getopt
  
-def help1(n):
-    c = "Refer to documentation on how to use the following program for analysis 1. Loop Closure Equation - from function_file import loop_closure \n loop_closure(ang_vel2,ang_vel3,ang_vel4,ang_acc2,ang_acc3,ang_acc4)"
-    return c
-        
-     
-def loop_closure(w2,w3,w4,a2,a3,a4):
+
+def main():
+    try:
+        opts, args = getopt.getopt(sys.argv[1], "h", ["help"])
+    except getopt.GetoptError as err:
+        print(err)
+        help1()
+        sys.exit(2)
+    for o, a in opts:
+        if o in ("-h", "--help"):
+            help1()
+            sys.exit()
+        elif o in ("-a", "-about"):
+            lic()
+            sys.exit()
+        else:
+            assert False, "unhandled option"
+def lic():
+    print("Copyright (C) 2015 Sai Guruprasad Jakkala, G V Balakrishna ")
+    print("This program is free software: you can redistribute it ")
+    print("and/or modify it under the terms of the GNU General ")
+    print("Public License as published by the Free Software Foundation,")
+    print("either version 3 of the License, or (at your option) any")
+    print("later version. This program is distributed in the hope that ")
+    print("it will be useful, but WITHOUT ANY WARRANTY; without even the")
+    print("implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.")
+    print("See the GNU General Public License for more details.")
+    print("You should have received a copy of the GNU General Public License")
+    print("along with this program. If not, see http://www.gnu.org/licenses/.\n")
+            
+def help1():
+    lic()
+    print("Refer to documentation on how to use the following program for analysis \n")
+    print("1. Loop Closure Equation - from ksynpy import lpcs \n lpcs(ang_vel2,ang_vel3,ang_vel4,ang_acc2,ang_acc3,ang_acc4) \n")
+    print("2. Three Position Synthesis - from ksynpy import thpos \n thpos(len2,len3,gamma2,gamma3,psi2,psi3,phi2,phi3) \n")    
+    print("3. Freudenstein Equation Analysis - from ksynpy import frst \n frst('func(x)',init_x,fin_x,no_of_pos,crk_ang,swing_ang1,roc_ang,swing_ang2) \n") 
+    
+def lpcs(w2,w3,w4,a2,a3,a4):
     r2 = w4*(complex(a3,w3**2)) - w3*(complex(a4,w4**2));
     r3 = w2*(complex(a4,w4**2)) - w4*(complex(a2,w2**2));
     r4 = w3*(complex(a2,w2**2)) - w2*(complex(a3,w3**2));
     r1 = -r2-r3-r4;
     return r1,r2,r3,r4;  
     
-def three_position(d2,d3,gamma2,gamma3,psi2,psi3,phi2,phi3):
+def thpos(d2,d3,gamma2,gamma3,psi2,psi3,phi2,phi3):
     Al=[[cm.exp(psi2*cm.pi*1j/180)-1,cm.exp(gamma2*cm.pi*1j/180)-1],[cm.exp(psi3*cm.pi*1j/180)-1,cm.exp(gamma3*cm.pi*1j/180)-1]];
     Bl=[[d2],[d3]];
     Cl=lm.solve(Al,Bl);
@@ -35,8 +78,10 @@ def three_position(d2,d3,gamma2,gamma3,psi2,psi3,phi2,phi3):
     l6=l1+l5-l3;
     return l1,l2,l3,l4,l5,l6;
     
-def freudenstein(f1,x0,x_n,n,psi1,psi2,phi1,phi2):
+def frst(f1,x0,x_n,n,psi1,s1,phi1,s2):
     f2=sp.simplify(f1);
+    psi2=psi1+s1;
+    phi2=phi1+s2;
     xf=np.zeros(n+2);
     yf=np.zeros(n+2);
     xf[0]=x0; yf[0]=f2.subs({'x':x0}).evalf();
@@ -71,7 +116,10 @@ def freudenstein(f1,x0,x_n,n,psi1,psi2,phi1,phi2):
     r2=r1/k2;
     r4=r1/k1;
     r3=((2*r2*r4*k3)+r1**2+r2**2+r4**2)**0.5;
-    return r1,r2,r3,r4,psi,phi;
+    print('The link lengths are \n Link 1={} \n Link 2={} \n Link 3={} \n Link 4={}'.format(r1,r2,r3,r4))
+    print('x \t y \t psi \t \t phi')    
+    for x in range(5):
+        print("{0:.3f} \t {1:.3f} \t {2:.3f} \t {3:.3f}".format(xf[x],yf[x],psi[x],phi[x]) )
 
 if __name__=="__main__":
-    help1(int(sys.argv[1]))
+    help1()
