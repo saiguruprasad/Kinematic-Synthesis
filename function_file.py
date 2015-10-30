@@ -2,12 +2,20 @@
 """
 Created on Thu Oct 22 20:58:19 2015
 
-@author: Sai Guruprasad
+@author: Sai Guruprasad & G V Balakrishna
 """
 import cmath as cm
 import numpy.linalg as lm
 import numpy as np
 import sympy as sp
+
+if __name__=="__main__":
+	import sys
+	help(int(sys.argv[1]))
+
+def help(n)
+	print("Refer to documentation on how to use the following program for analysis")
+	print("1. Loop Closure Equation - from function_file import loop_closure \n loop_closure(ang_vel2,ang_vel3,ang_vel4,ang_acc2,ang_acc3,ang_acc4)")
 
 def loop_closure(w2,w3,w4,a2,a3,a4):
     r2 = w4*(complex(a3,w3**2)) - w3*(complex(a4,w4**2));
@@ -66,3 +74,5 @@ def freudenstein(f1,x0,x_n,n,psi1,psi2,phi1,phi2):
     r4=r1/k1;
     r3=((2*r2*r4*k3)+r1**2+r2**2+r4**2)**0.5;
     return r1,r2,r3,r4,psi,phi;
+
+
