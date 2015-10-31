@@ -17,3 +17,6 @@ Copyright (C) 2015 Sai Guruprasad Jakkala, G V Balakrishna
 
 Currently, Loop closure, Freudenstein and Three position synthesis using Standard form are supported.
 More functions are currently under development.
+
+For Python 3.x use ksynpy.py
+For Python 2.x use function_file.py
