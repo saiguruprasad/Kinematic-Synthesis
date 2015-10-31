@@ -20,7 +20,8 @@ import numpy as np
 import sympy as sp
 import sys
 import getopt
- 
+import matplotlib.pyplot as plt
+from cmath import * 
 
 def main():
     try:
@@ -63,8 +64,15 @@ def lpcs(w2,w3,w4,a2,a3,a4):
     r3 = w2*(complex(a4,w4**2)) - w4*(complex(a2,w2**2));
     r4 = w3*(complex(a2,w2**2)) - w2*(complex(a3,w3**2));
     r1 = -r2-r3-r4;
-    return r1,r2,r3,r4;  
-    
+    r1_l=abs(r1); r1_a=cm.phase(r1)*180/cm.pi;
+    r2_l=abs(r2); r2_a=cm.phase(r2)*180/cm.pi;
+    r3_l=abs(r3); r3_a=cm.phase(r3)*180/cm.pi;
+    r4_l=abs(r4); r4_a=cm.phase(r4)*180/cm.pi;
+    a=180-r1_a;
+    plt.hold('on')
+    plt.plot([0,r2_l*np.cos((a+r2_a)*np.pi/180),r3_l*np.cos((a+r3_a)*np.pi/180),r1_l*np.cos((a+r4_a)*np.pi/180)],[0,r2_l*np.sin((a+r2_a)*np.pi/180),r3_l*np.sin((a+r3_a)*np.pi/180),0],color='k');
+    print(" Link 1 \t {0:.3f} \t {1:.3f}  \n Link 2 \t {2:.3f} \t {3:.3f} \n Link 3 \t {4:.3f} \t {5:.3f} \n Link 4 \t {6:.3f} \t {7:.3f}".format(r1_l,r1_a,r2_l,r2_a,r3_l,r3_a,r4_l,r4_a))
+        
 def thpos(d2,d3,gamma2,gamma3,psi2,psi3,phi2,phi3):
     Al=[[cm.exp(psi2*cm.pi*1j/180)-1,cm.exp(gamma2*cm.pi*1j/180)-1],[cm.exp(psi3*cm.pi*1j/180)-1,cm.exp(gamma3*cm.pi*1j/180)-1]];
     Bl=[[d2],[d3]];
@@ -111,12 +119,15 @@ def frst(f1,x0,x_n,n,psi1,s1,phi1,s2):
     k1=las[k11];
     k2=las[k22];
     k3=las[k33];
-
+    col=['r','b','g','k','r'];
     r1=1;
     r2=r1/k2;
     r4=r1/k1;
     r3=((2*r2*r4*k3)+r1**2+r2**2+r4**2)**0.5;
-    print('The link lengths are \n Link 1={} \n Link 2={} \n Link 3={} \n Link 4={}'.format(r1,r2,r3,r4))
+    for k in range(5):
+        plt.hold('on')
+        plt.plot([0,r2*cos(psi[k]*pi/180),r4*cos((phi[k]-180)*pi/180),1],[0,r2*sin(psi[k]*pi/180),r4*sin((phi[k]-180)*pi/180),0],color=col[k]);
+    print('The link lengths are \n Link 1={0:.3f} \n Link 2={1:.3f} \n Link 3={2:.3f} \n Link 4={3:.3f}'.format(r1,r2,r3,r4))
     print('x \t y \t psi \t \t phi')    
     for x in range(5):
         print("{0:.3f} \t {1:.3f} \t {2:.3f} \t {3:.3f}".format(xf[x],yf[x],psi[x],phi[x]) )
