@@ -1,27 +1,45 @@
-# -*- coding: utf-8 -*-
 """
-Created on Thu Oct 22 20:58:19 2015
+Copyright (C) 2015 Sai Guruprasad Jakkala, G V Balakrishna
 
-@author: Sai Guruprasad & G V Balakrishna
+This program is free software: you can redistribute it 
+and/or modify it under the terms of the GNU General 
+Public License as published by the Free Software Foundation,
+either version 3 of the License, or (at your option) any 
+later version. This program is distributed in the hope that 
+it will be useful, but WITHOUT ANY WARRANTY; without even the 
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License 
+along with this program. If not, see http://www.gnu.org/licenses/.
 """
 import cmath as cm
 import numpy.linalg as lm
 import numpy as np
-import sympy as sp
- 
-def help1(n):
-    if(n==1):
-        return("Refer to documentation on how to use the following program for analysis 1. Loop Closure Equation - from function_file import loop_closure \n loop_closure(ang_vel2,ang_vel3,ang_vel4,ang_acc2,ang_acc3,ang_acc4)")
-        
+import sympy as sp      
+from __future__ import division
+import matplotlib.pyplot as plt
      
-def loop_closure(w2,w3,w4,a2,a3,a4):
+def lpcs(w2,w3,w4,a2,a3,a4):
     r2 = w4*(complex(a3,w3**2)) - w3*(complex(a4,w4**2));
     r3 = w2*(complex(a4,w4**2)) - w4*(complex(a2,w2**2));
     r4 = w3*(complex(a2,w2**2)) - w2*(complex(a3,w3**2));
     r1 = -r2-r3-r4;
+	r1_l=abs(r1); r1_a=cm.phase(r1)*180/cm.pi;
+	r2_l=abs(r2); r2_a=cm.phase(r2)*180/cm.pi;
+	r3_l=abs(r3); r3_a=cm.phase(r3)*180/cm.pi;
+	r4_l=abs(r4); r4_a=cm.phase(r4)*180/cm.pi;
+	print 'Link 1 Length :',r1_l,'Angle :',r1_a
+	print 'Link 2 Length :',r2_l,'Angle :',r2_a
+	print 'Link 3 Length :',r3_l,'Angle :',r3_a
+	print 'Link 4 Length :',r4_l,'Angle :',r4_a
+	a=180-r1_a;
+	plt.hold('on')
+	plt.plot([0,r2_l*np.cos((a+r2_a)*np.pi/180),r3_l*np.cos((a+r3_a)*np.pi/180),r1_l*np.cos((a+r4_a)*np.pi/180)],[0,r2_l*np.sin((a+r2_a)*np.pi/180),r3_l*np.sin((a+r3_a)*np.pi/180),0],color='k');
+	#ax.annotate('A',(r2_l*np.cos((a+r2_a)*np.pi/180),r2_l*np.sin((a+r2_a)*np.pi/180)))
     return r1,r2,r3,r4;  
     
-def three_position(d2,d3,gamma2,gamma3,psi2,psi3,phi2,phi3):
+def thpos(d2,d3,gamma2,gamma3,psi2,psi3,phi2,phi3):
     Al=[[cm.exp(psi2*cm.pi*1j/180)-1,cm.exp(gamma2*cm.pi*1j/180)-1],[cm.exp(psi3*cm.pi*1j/180)-1,cm.exp(gamma3*cm.pi*1j/180)-1]];
     Bl=[[d2],[d3]];
     Cl=lm.solve(Al,Bl);
@@ -34,7 +52,7 @@ def three_position(d2,d3,gamma2,gamma3,psi2,psi3,phi2,phi3):
     l6=l1+l5-l3;
     return l1,l2,l3,l4,l5,l6;
     
-def freudenstein(f1,x0,x_n,n,psi1,psi2,phi1,phi2):
+def frst(f1,x0,x_n,n,psi1,psi2,phi1,phi2):
     f2=sp.simplify(f1);
     xf=np.zeros(n+2);
     yf=np.zeros(n+2);
@@ -70,9 +88,9 @@ def freudenstein(f1,x0,x_n,n,psi1,psi2,phi1,phi2):
     r2=r1/k2;
     r4=r1/k1;
     r3=((2*r2*r4*k3)+r1**2+r2**2+r4**2)**0.5;
+    col=['r','b','g','k','r'];
+	for k in range(5):
+    		plt.hold('on')
+    		plt.plot([0,r2*cos(psi[k]*pi/180),r4*cos((phi[k]-180)*pi/180),1],[0,r2*sin(psi[k]*pi/180),r4*sin((phi[k]-180)*pi/180),0],color=col[k]);
     return r1,r2,r3,r4,psi,phi;
-
-
-if __name__=="__main__":
-	import sys
-	help1(int(sys.argv[1]))
+	

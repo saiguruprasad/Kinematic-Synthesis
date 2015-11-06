@@ -1,11 +1,20 @@
-# -*- coding: utf-8 -*-
 """
-Created on Fri Oct 23 14:09:21 2015
+Copyright (C) 2015 Sai Guruprasad Jakkala, G V Balakrishna
 
-@author: Sai Guruprasad
+This program is free software: you can redistribute it 
+and/or modify it under the terms of the GNU General 
+Public License as published by the Free Software Foundation,
+either version 3 of the License, or (at your option) any 
+later version. This program is distributed in the hope that 
+it will be useful, but WITHOUT ANY WARRANTY; without even the 
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License 
+along with this program. If not, see http://www.gnu.org/licenses/.
 """
 
-from function_file import three_position
+from ksynpy import thpos
 import cmath as cm
 import numpy as np
 
@@ -17,7 +26,7 @@ psi2=eval(raw_input('Enter the differnce of crank angle between position 1 & 2 :
 psi3=eval(raw_input('Enter the differnce of crank angle between position 1 & 3 : '));
 phi2=eval(raw_input('Enter the differnce of rocker angle between position 1 & 2 : '));
 phi3=eval(raw_input('Enter the differnce of rocker angle between position 1 & 3 : '));
-[r1,r2,r3,r4,r5,r6]=three_position(d2,d3,gamma2,gamma3,psi2,psi3,phi2,phi3);
+[r1,r2,r3,r4,r5,r6]=thpos(d2,d3,gamma2,gamma3,psi2,psi3,phi2,phi3);
 r=[r1,r2,r3,r4,r5,r6];
 r_l=np.absolute(r);
 r_ar=np.angle(r);

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Copyright (C) 2015 Sai Guruprasad Jakkala, G V Balakrishna
 
@@ -28,18 +27,18 @@ def main():
         opts, args = getopt.getopt(sys.argv[1], "h", ["help"])
     except getopt.GetoptError as err:
         print(err)
-        help1()
+        help1(1)
         sys.exit(2)
     for o, a in opts:
         if o in ("-h", "--help"):
-            help1()
+            help1(1)
             sys.exit()
         elif o in ("-a", "-about"):
-            lic()
+            lic(1)
             sys.exit()
         else:
             assert False, "unhandled option"
-def lic():
+def lic(n):
     print("Copyright (C) 2015 Sai Guruprasad Jakkala, G V Balakrishna ")
     print("This program is free software: you can redistribute it ")
     print("and/or modify it under the terms of the GNU General ")
@@ -52,8 +51,8 @@ def lic():
     print("You should have received a copy of the GNU General Public License")
     print("along with this program. If not, see http://www.gnu.org/licenses/.\n")
             
-def help1():
-    lic()
+def help1(n):
+    lic(1)
     print("Refer to documentation on how to use the following program for analysis \n")
     print("1. Loop Closure Equation - from ksynpy import lpcs \n lpcs(ang_vel2,ang_vel3,ang_vel4,ang_acc2,ang_acc3,ang_acc4) \n")
     print("2. Three Position Synthesis - from ksynpy import thpos \n thpos(len2,len3,gamma2,gamma3,psi2,psi3,phi2,phi3) \n")    
@@ -133,4 +132,4 @@ def frst(f1,x0,x_n,n,psi1,s1,phi1,s2):
         print("{0:.3f} \t {1:.3f} \t {2:.3f} \t {3:.3f}".format(xf[x],yf[x],psi[x],phi[x]) )
 
 if __name__=="__main__":
-    help1()
+    help1(1)

@@ -1,11 +1,20 @@
-# -*- coding: utf-8 -*-
 """
-Created on Thu Oct 22 21:16:05 2015
+Copyright (C) 2015 Sai Guruprasad Jakkala, G V Balakrishna
 
-@author: Sai Guruprasad
+This program is free software: you can redistribute it 
+and/or modify it under the terms of the GNU General 
+Public License as published by the Free Software Foundation,
+either version 3 of the License, or (at your option) any 
+later version. This program is distributed in the hope that 
+it will be useful, but WITHOUT ANY WARRANTY; without even the 
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License 
+along with this program. If not, see http://www.gnu.org/licenses/.
 """
 
-from function_file import loop_closure
+from ksynpy import lpcs
 import cmath as cm
 import matplotlib.pyplot as plt
 import numpy as np
@@ -16,7 +25,7 @@ w4=eval(raw_input('Angular Velocity of link 4 : '));
 a2=eval(raw_input('Angular Acceleration of link 2 : '));
 a3=eval(raw_input('Angular Acceleration of link 3 : '));
 a4=eval(raw_input('Angular Acceleration of link 4 : '));
-[r1,r2,r3,r4]=loop_closure(w2,w3,w4,a2,a3,a4);
+[r1,r2,r3,r4]=lpcs(w2,w3,w4,a2,a3,a4);
 r1_l=abs(r1); r1_a=cm.phase(r1)*180/cm.pi;
 r2_l=abs(r2); r2_a=cm.phase(r2)*180/cm.pi;
 r3_l=abs(r3); r3_a=cm.phase(r3)*180/cm.pi;
