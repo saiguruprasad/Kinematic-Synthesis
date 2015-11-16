@@ -13,11 +13,11 @@ See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License 
 along with this program. If not, see http://www.gnu.org/licenses/.
 """
+from __future__ import division
 import cmath as cm
 import numpy.linalg as lm
 import numpy as np
 import sympy as sp      
-from __future__ import division
 import matplotlib.pyplot as plt
      
 def loop_closure(w2,w3,w4,a2,a3,a4):
@@ -77,8 +77,8 @@ def freudenstein(f1,x0,x_n,n,psi1,psi2,phi1,phi2):
     r4=r1/k1;
     r3=((2*r2*r4*k3)+r1**2+r2**2+r4**2)**0.5;
     col=['r','b','g','k','r'];
-	for k in range(5):
-    		plt.hold('on')
-    		plt.plot([0,r2*cos(psi[k]*pi/180),r4*cos((phi[k]-180)*pi/180),1],[0,r2*sin(psi[k]*pi/180),r4*sin((phi[k]-180)*pi/180),0],color=col[k]);
+    for k in range(5):
+    	plt.hold('on')
+    	plt.plot([0,r2*np.cos(psi[k]*np.pi/180),r4*np.cos((phi[k]-180)*np.pi/180),1],[0,r2*np.sin(psi[k]*np.pi/180),r4*np.sin((phi[k]-180)*np.pi/180),0],color=col[k]);
     return r1,r2,r3,r4,psi,phi;
 	
