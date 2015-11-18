@@ -21,6 +21,7 @@ Solves problems related to Loop closure equation, Freudenstein's equation, Three
 The functions are written in Python 2.7, Python 3.4 and GNU Octave. The codes/programs written in GNU Octave are compatible with MATLAB 7.x. Other versions may or may not be supported. Many dependencies may be needed inorder to get the codes working in GNU Octave in Windows and Linux. Most important dependencies and their method of installation in Windows can be found in Youtube (link given below):
 
 <https://www.youtube.com/watch?v=KTvku6wvfQ4> Part I 
+
 <https://www.youtube.com/watch?v=8C9j2qlhTf0> Part II 
 
 Please refer to the "Terms and Conditions" before using these codes for any commercial purposes.
