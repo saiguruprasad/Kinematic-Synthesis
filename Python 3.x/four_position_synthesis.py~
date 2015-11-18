@@ -17,15 +17,15 @@ along with this program. If not, see http://www.gnu.org/licenses/.
 from __future__ import division
 import numpy as np
 import cmath as cm
-import np.linalg as lm
+import numpy.linalg as lm
 
-d2=eval(raw_input('Enter the first position vector : '));
-d3=eval(raw_input('Enter the second position vector : '));
-d4=eval(raw_input('Enter the third position vector : '));
-a2=eval(raw_input('Enter the first angle difference of output linkage : '));
-a3=eval(raw_input('Enter the second angle difference of output linkage : '));
-a4=eval(raw_input('Enter the third angle difference of output linkage : '));
-b2=eval(raw_input('Enter a value for the input angle : '));
+d2=eval(input('Enter the first position vector : '));
+d3=eval(input('Enter the second position vector : '));
+d4=eval(input('Enter the third position vector : '));
+a2=eval(input('Enter the first angle difference of output linkage : '));
+a3=eval(input('Enter the second angle difference of output linkage : '));
+a4=eval(input('Enter the third angle difference of output linkage : '));
+b2=eval(input('Enter a value for the input angle : '));
 
 delta2=((cm.exp(1j*a3*cm.pi/180)-1)*d4) - ((cm.exp(1j*a4*cm.pi/180)-1)*d3);
 delta3=-1*(((cm.exp(1j*a2*cm.pi/180)-1)*d4) - ((cm.exp(1j*a4*cm.pi/180)-1)*d2));
@@ -49,6 +49,7 @@ b4d=np.angle(delta)+theta4-np.angle(delta4)+np.pi;
 Al=[[cm.exp(b2*cm.pi*1j/180)-1,cm.exp(a2*cm.pi*1j/180)-1],[cm.exp(b3*cm.pi*1j/180)-1,cm.exp(a3*cm.pi*1j/180)-1]];
 Bl=[[d2],[d3]];
 Cl=lm.solve(Al,Bl);
-W=Cl[0]; Z=Cl[1];
-print W
-print Z
+W=Cl[0]
+Z=Cl[1]
+
+print("W={}\nZ={}".format(W,Z))
