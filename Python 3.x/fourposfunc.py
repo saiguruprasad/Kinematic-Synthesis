@@ -42,9 +42,9 @@ def fpos(f1,x0,x_n,n,psi1,psi2,phi1,phi2):
     for k in range(3):
         psi[k+1]=a1*xf[k+1]+b1;
         phi[k+1]=c1*yf[k+1]+d1;
-    d2=eval(input('Enter the first position vector : '));
-    d3=eval(input('Enter the second position vector : '));
-    d4=eval(input('Enter the third position vector : '));
+    d2=eval(raw_input('Enter the first position vector : '));
+    d3=eval(raw_input('Enter the second position vector : '));
+    d4=eval(raw_input('Enter the third position vector : '));
     a2=phi[1]-phi[2];
     a3=phi[2]-phi[3];
     a4=phi[3]-phi[4];
@@ -65,7 +65,8 @@ def fpos(f1,x0,x_n,n,psi1,psi2,phi1,phi2):
 
     ctheta4=((np.abs(delta3)**2-np.abs(delta4)**2-np.abs(delta)**2)/(2*np.abs(delta4)*np.abs(delta)));
     stheta4=np.abs((1-ctheta4**2)**0.5);
-    theta4=np.arctan2(stheta4,ctheta4);
+    theta4=np.arcta
+    n2(stheta4,ctheta4);
     b4=np.angle(delta)-theta4-np.angle(delta4);
     b4d=np.angle(delta)+theta4-np.angle(delta4)+np.pi;
 
@@ -74,9 +75,10 @@ def fpos(f1,x0,x_n,n,psi1,psi2,phi1,phi2):
     Cl=lm.solve(Al,Bl);
     W=Cl[0]
     Z=Cl[1]
-    """print 'Link W Length :',r_l[0],'Angle :',r_a[0]%
-    print 'Link Z Length :',r_l[1],'Angle :',r_a[1]"""
-    print("W={}\nZ={}".format(W,Z))
-    return xf,yf,psi,phi;    
-    
-
+    r=[W,Z];
+    r_l=np.absolute(r);
+    r_ar=np.angle(r);
+    r_a=np.rad2deg(r_ar);
+    print 'Link W Length :',r_l[0],'Angle :',r_a[0]
+    print 'Link Z Length :',r_l[1],'Angle :',r_a[1]
+#    print("W={}\nZ={}".format(W,Z))
