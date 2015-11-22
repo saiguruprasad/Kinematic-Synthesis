@@ -21,6 +21,8 @@ import sys
 import getopt
 import matplotlib.pyplot as plt
 from cmath import * 
+from numpy import *
+from math import *
 
 def main():
     try:
@@ -83,7 +85,26 @@ def thpos(d2,d3,gamma2,gamma3,psi2,psi3,phi2,phi3):
     l3=Cr[0]; l4=Cr[1];
     l5=l2-l4;
     l6=l1+l5-l3;
-    return l1,l2,l3,l4,l5,l6;
+    l1_l=abs(l1);
+    l1_a=atan2(l1.imag,l1.real)*180/pi;
+    l2_l=abs(l2);
+    l2_a=atan2(l2.imag,l2.real)*180/pi;
+    l3_l=abs(l3);
+    l3_a=atan2(l3.imag,l3.real)*180/pi;
+    l4_l=abs(l4);
+    l4_a=atan2(l4.imag,l4.real)*180/pi;
+    l5_l=abs(l5);
+    l5_a=atan2(l5.imag,l5.real)*180/pi;
+    l6_l=abs(l6);
+    l6_a=atan2(l6.imag,l6.real)*180/pi;
+    a=180-l6_a;
+    print('The link lengths are \n Link 1={} \n Link 2={} \n Link 3={} \n Link 4={} \n Link 5={} \n Link 6={}'.format(l1,l2,l3,l4,l5,l6))
+    plt.hold('on')    
+    plt.plot([0,l1_l*np.cos((a+l1_a)*np.pi/180),l2_l*np.cos((a+l2_a)*np.pi/180),l5_l*np.cos((a+l5_a)*np.pi/180),l6_l*np.cos((a+l6_a)*np.pi/180)],[0,l1_l*np.sin((a+l1_a)*np.pi/180),l2_l*np.sin((a+l2_a)*np.pi/180),l5_l*np.sin((a+l5_a)*np.pi/180),0],color='k');
+    plt.hold('on')
+    plt.plot([l5_l*np.cos((a+l5_a)*np.pi/180),l1_l*np.cos((a+l1_a)*np.pi/180)],[l5_l*np.sin((a+l5_a)*np.pi/180),l1_l*np.sin((a+l1_a)*np.pi/180)],'k')
+    plt.hold('on')
+    plt.plot([l6_l*np.cos((a+l6_a)*np.pi/180),0],[l6_l*np.sin((a+l6_a)*np.pi/180),0])
     
 def frst(f1,x0,x_n,n,psi1,s1,phi1,s2):
     f2=sp.simplify(f1);
