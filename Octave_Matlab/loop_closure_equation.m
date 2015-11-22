@@ -16,6 +16,8 @@ along with this program. If not, see http://www.gnu.org/licenses/.
 
 
 %Loop Closure Equation
+% Input the angular velocities and accelerations of the links 2,3 and 4 to
+% get the required 4 bar solution.
 
 %Input variables
 w2=input('Enter angular velocity of link 2 (rad/s) : ');

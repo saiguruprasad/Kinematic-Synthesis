@@ -15,7 +15,11 @@ along with this program. If not, see http://www.gnu.org/licenses/.
 %}
 
 %Freudenstein Equation
-
+% Use this program to solve for function generation analytically for 3
+% positions. To use this program you have to input the function, the lower
+% and upper limits of x and the number of precision ppoints required. You
+% will also have to give the limits of the input and output angle (swings
+% of both the links) to get the solution.
 
 syms x
 

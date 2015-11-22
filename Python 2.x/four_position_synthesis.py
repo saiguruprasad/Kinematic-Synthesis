@@ -17,7 +17,7 @@ along with this program. If not, see http://www.gnu.org/licenses/.
 from __future__ import division
 import numpy as np
 import cmath as cm
-import np.linalg as lm
+import numpy.linalg as lm
 
 d2=eval(raw_input('Enter the first position vector : '));
 d3=eval(raw_input('Enter the second position vector : '));
@@ -34,14 +34,14 @@ delta1=-delta2-delta3-delta4;
 delta=delta1+(delta2*cm.exp(1j*b2*cm.pi/180));
 
 ctheta3=((np.abs(delta4)**2-np.abs(delta3)**2-np.abs(delta)**2)/(2*np.abs(delta3)*np.abs(delta)));
-stheta3=np.abs((1-ctheta3**2)**0.5);
+stheta3=np.absolute((1-ctheta3**2)**0.5);
 theta3=np.arctan2(stheta3,ctheta3);
 b3=np.angle(delta)+theta3-np.angle(delta3);
 theta3d=(2*np.pi)-theta3;
 b3d=np.angle(delta)+theta3d-np.angle(delta3);
 
 ctheta4=((np.abs(delta3)**2-np.abs(delta4)**2-np.abs(delta)**2)/(2*np.abs(delta4)*np.abs(delta)));
-stheta4=np.abs((1-ctheta4**2)**0.5);
+stheta4=np.absolute((1-ctheta4**2)**0.5);
 theta4=np.arctan2(stheta4,ctheta4);
 b4=np.angle(delta)-theta4-np.angle(delta4);
 b4d=np.angle(delta)+theta4-np.angle(delta4)+np.pi;
@@ -50,5 +50,9 @@ Al=[[cm.exp(b2*cm.pi*1j/180)-1,cm.exp(a2*cm.pi*1j/180)-1],[cm.exp(b3*cm.pi*1j/18
 Bl=[[d2],[d3]];
 Cl=lm.solve(Al,Bl);
 W=Cl[0]; Z=Cl[1];
-print W
-print Z
+r=[W,Z];
+r_l=np.absolute(r);
+r_ar=np.angle(r);
+r_a=np.rad2deg(r_ar);
+print 'Link W Length :',r_l[0],'Angle :',r_a[0]
+print 'Link Z Length :',r_l[1],'Angle :',r_a[1]

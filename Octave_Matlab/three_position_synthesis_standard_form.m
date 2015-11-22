@@ -15,6 +15,9 @@ along with this program. If not, see http://www.gnu.org/licenses/.
 %}
 
 % Three position synthesis
+%Enther the 2 position vectors and then enter the angle values for the
+%coupler, crank and output link. This will solve for the motion generation
+%for 3 positions.
 
 %Taking the two delta terms first
 d2=input('Enter the first position vector : ');
@@ -27,8 +30,8 @@ gamma3=input('Enter the value of the coupler angle difference between position 1
 %Assuming angles of the input and output angles
 phi2=input('Enter the value of the input angle difference between position 1 & 2 : ');
 phi3=input('Enter the value of the input angle difference between position 2 & 3 : ');
-psi2=input('Enter the value of the input angle difference between position 1 & 2 : ');
-psi3=input('Enter the value of the input angle difference between position 2 & 3 : ');
+psi2=input('Enter the value of the output angle difference between position 1 & 2 : ');
+psi3=input('Enter the value of the output angle difference between position 2 & 3 : ');
 
 %Equation solving
 %LH Dyad

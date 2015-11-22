@@ -13,6 +13,12 @@ See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License 
 along with this program. If not, see http://www.gnu.org/licenses/.
 %}
+
+% To use this program you have to input the 3 position vetors and then the
+% three input angle positions for the rocker and one angle position for the
+% input crank. This will give solutions to the path generation, motion
+% generation and path generation.
+
 d2=input('Enter the first position vector : ');
 d3=input('Enter the second position vector : ');
 d4=input('Enter the third position vector : ');
@@ -28,7 +34,7 @@ delta1=-delta2-delta3-delta4;
 delta=delta1+(delta2*exp(1i*b2*pi/180));
 
 ctheta3=((abs(delta4)^2-abs(delta3)^2-abs(delta)^2)/(2*abs(delta3)*abs(delta)));
-stheta3=abs((1-ctheta3^2)^0.5);
+stheta3=((1-ctheta3^2)^0.5);
 theta3=atan2(stheta3,ctheta3);
 b3=angle(delta)+theta3-angle(delta3);
 theta3d=(2*pi)-theta3;
