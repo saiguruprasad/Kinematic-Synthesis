@@ -20,8 +20,8 @@ import numpy as np
 
 d2=eval(raw_input('Enter the first position vector : '));
 d3=eval(raw_input('Enter the second position vector : '));
-gamma2=eval(raw_input('Enter the differnce of couple angle between position 1 & 2 : '));
-gamma3=eval(raw_input('Enter the differnce of couple angle between position 1 & 3 : '));
+gamma2=eval(raw_input('Enter the differnce of coupler angle between position 1 & 2 : '));
+gamma3=eval(raw_input('Enter the differnce of coupler angle between position 1 & 3 : '));
 psi2=eval(raw_input('Enter the differnce of crank angle between position 1 & 2 : '));
 psi3=eval(raw_input('Enter the differnce of crank angle between position 1 & 3 : '));
 phi2=eval(raw_input('Enter the differnce of rocker angle between position 1 & 2 : '));
