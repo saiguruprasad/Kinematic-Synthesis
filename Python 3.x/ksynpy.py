@@ -97,14 +97,15 @@ def thpos(d2,d3,gamma2,gamma3,psi2,psi3,phi2,phi3):
     l5_a=atan2(l5.imag,l5.real)*180/pi;
     l6_l=abs(l6);
     l6_a=atan2(l6.imag,l6.real)*180/pi;
-    a=180-l6_a;
-    print('The link lengths are \n Link 1={} \n Link 2={} \n Link 3={} \n Link 4={} \n Link 5={} \n Link 6={}'.format(l1,l2,l3,l4,l5,l6))
+    print('The link lengths are \n Link 1={} \n Link 2={} \n Link 3={} \n Link 4={} \n Link 5={} \n Link 6={}'.format(l1_l,l2_l,l3_l,l4_l,l5_l,l6_l))
+    print('The link angles are \n Link 1={} \n Link 2={} \n Link 3={} \n Link 4={} \n Link 5={} \n Link 6={})'.format(l1_a,l2_a,l3_a,l4_a,l5_a,l6_a))
     plt.hold('on')    
-    plt.plot([0,l1_l*np.cos((a+l1_a)*np.pi/180),l2_l*np.cos((a+l2_a)*np.pi/180),l5_l*np.cos((a+l5_a)*np.pi/180),l6_l*np.cos((a+l6_a)*np.pi/180)],[0,l1_l*np.sin((a+l1_a)*np.pi/180),l2_l*np.sin((a+l2_a)*np.pi/180),l5_l*np.sin((a+l5_a)*np.pi/180),0],color='k');
+    plt.plot([0,l1_l*np.cos((l1_a)*np.pi/180),l1_l*np.cos((l1_a)*np.pi/180)+l2_l*np.cos((l2_a)*np.pi/180),l3_l*np.cos((l3_a)*np.pi/180)+l6_l*np.cos((l6_a)*np.pi/180),l6_l*np.cos((l6_a)*np.pi/180)],[0,l1_l*np.sin((l1_a)*np.pi/180),l1_l*np.sin((l1_a)*np.pi/180)+l2_l*np.sin((l2_a)*np.pi/180),l3_l*np.sin((l3_a)*np.pi/180)+l6_l*np.sin((l6_a)*np.pi/180),l6_l*np.sin((l6_a)*np.pi/180)],color='k');
     plt.hold('on')
-    plt.plot([l5_l*np.cos((a+l5_a)*np.pi/180),l1_l*np.cos((a+l1_a)*np.pi/180)],[l5_l*np.sin((a+l5_a)*np.pi/180),l1_l*np.sin((a+l1_a)*np.pi/180)],'k')
+    plt.plot([l3_l*np.cos((l3_a)*np.pi/180)+l6_l*np.cos((l6_a)*np.pi/180),l1_l*np.cos((l1_a)*np.pi/180)],[l3_l*np.sin((l3_a)*np.pi/180)+l6_l*np.sin((l6_a)*np.pi/180),l1_l*np.sin((l1_a)*np.pi/180)],'k')
     plt.hold('on')
-    plt.plot([l6_l*np.cos((a+l6_a)*np.pi/180),0],[l6_l*np.sin((a+l6_a)*np.pi/180),0])
+    plt.plot([l6_l*np.cos((l6_a)*np.pi/180),0],[l6_l*np.sin((l6_a)*np.pi/180),0])
+        
     
 def frst(f1,x0,x_n,n,psi1,s1,phi1,s2):
     f2=sp.simplify(f1);
